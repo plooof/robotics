@@ -54,11 +54,22 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
-    frontRight.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
-    
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
+
+    if (controller.getLeftX() < 0) {
+      // left movement
+      frontRight.set(VictorSPXControlMode.PercentOutput, controller.getLeftX());
+      frontLeft.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
+    } else if (controller.getLeftX() > 0) {
+      // right movement
+      frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getLeftX());
+      frontRight.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
+    } else {
+      // straight movement
+      frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getRightY());
+      frontRight.set(VictorSPXControlMode.PercentOutput, controller.getRightY());
+    }
 
   }
 
