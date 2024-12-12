@@ -59,15 +59,15 @@ public class Robot extends TimedRobot {
 
     if (controller.getLeftX() < 0) {
       // left movement
-      frontRight.set(VictorSPXControlMode.PercentOutput, controller.getLeftX());
+      frontRight.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
       frontLeft.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
     } else if (controller.getLeftX() > 0) {
       // right movement
-      frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getLeftX());
+      frontLeft.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
       frontRight.set(VictorSPXControlMode.PercentOutput, -controller.getLeftX());
     } else {
       // straight movement
-      frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getRightY());
+      frontLeft.set(VictorSPXControlMode.PercentOutput, -controller.getRightY());
       frontRight.set(VictorSPXControlMode.PercentOutput, controller.getRightY());
     }
 
