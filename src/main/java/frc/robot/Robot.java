@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -30,6 +31,8 @@ public class Robot extends TimedRobot {
 
   private XboxController controller = new XboxController(0);
 
+
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -49,7 +52,15 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+
+    frontLeft.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
+    frontRight.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
+
+    backLeft.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
+    backRight.set(VictorSPXControlMode.PercentOutput, controller.getLeftY());
+
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
